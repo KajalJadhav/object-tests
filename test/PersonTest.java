@@ -213,6 +213,14 @@ public class PersonTest {
         }
     }
 
+    @Test(expected = java.lang.ClassCastException.class)
+    public void testGivesExceptionWhenIllegalCast() throws ClassCastException {
+        ArrayList list = new ArrayList<String>();
+        list.add(new Object());
+        list.add(new Object());
+        String a = (String) list.get(0);
+    }
+
     @Test
     public void test_case_for_hash_set_with_same_values() throws Exception {
         Person p1 = new Person("Kajal", 18);
@@ -234,4 +242,6 @@ public class PersonTest {
         set.add(p3);
         assertEquals(3, set.size());
     }
+
+
 }
