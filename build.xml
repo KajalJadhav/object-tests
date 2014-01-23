@@ -1,0 +1,38 @@
+<project name="object-tests" default = "run-tests">
+
+    <target name = "clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name = "init">
+        <mkdir dir = "build"/>
+        <mkdir dir = "build/classes"/>
+        <mkdir dir = "build/classes/src"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir ="src" destdir ="build/classes/src" includeantruntime = "false"/>
+    </target>
+
+    <target name = "compile-tests" depends = "compile">
+        <mkdir dir = "build/classes/test"/>
+        <javac classpath="dependencies/junit-4.10.jar;build/classes/src" srcdir ="test" destdir ="build/classes/test" includeantruntime = "false"/>
+    </target>
+
+    <target name = "run-tests" depends = "compile-tests">
+        <junit haltonfailure="yes">
+            <classpath>
+                <pathelement location="build/classes/src" />
+                <pathelement location="build/classes/test" />
+                <pathelement location="dependencies/junit-4.10.jar"/>
+            </classpath>
+            <batchtest>
+                <fileset dir="test">
+                    <include name="**/*Test*" />
+                </fileset>
+            </batchtest>
+            <formatter type = "brief" usefile = "false"/>
+        </junit>
+    </target>
+
+</project>

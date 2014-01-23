@@ -103,10 +103,4 @@ public class MyComparatorTest {
         String expected = "Kunal\nDigvijay\nSwamiji\n";
         assertEquals(expected, actual);
     }
-
-    @Test(expected = ClassCastException.class)
-    public void test_for_exception() throws Exception{
-        Person p = new Person("Kajal",18);
-    }
-
 }
